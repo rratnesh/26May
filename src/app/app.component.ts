@@ -6,30 +6,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'https://fakeimg.pl/250x100/ff0000/';
 
-  bgColor = 'red';
-
-  columns = 2;
-
-  active = false;
-
-  items = ['bmw', 'maruti', 'ferrari'];
-
-  constructor() {
-    console.log('constriuctor')
+  user = {
+    email: 'ratnesh@gmail.com',
+    name: 'Ratnesh Kumar Singh'
   }
 
-  toggleActive() {
+  active = false;
+  array = [];
+
+  ngOnInit() {
+  }
+
+  changeActive(arr){
+    this.array = arr;
     this.active = !this.active;
   }
 
-
-
-  ngOnInit() {
-    for (let item of this.items) {
-      console.log(item);
-    }
+  changeMyName(){
+    this.user.name = 'Dhruva Singh';
   }
-
 }

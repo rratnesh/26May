@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-headers',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeadersComponent implements OnInit {
 
+  @Input('firstName') name;
+  @Output() emitChangeActive = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  
+  changeActive(arr){
+    this.emitChangeActive.emit(arr);
+  }
 }
