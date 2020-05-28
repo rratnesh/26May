@@ -1,7 +1,5 @@
 <h1>{{title}}</h1>
 
-
-
 <div>
   <h1 [style.backgroundColor]="'green'">hjdshdjshj</h1>
 
@@ -26,3 +24,9 @@
 <div style="background-color: red;"*ngFor="let item of items">
   <h1>{{item}}</h1>
 </div>
+
+
+<div [class.active]="active">Class Binding</div>
+
+
+<div [ngClass]="{ 'active': active, 'color-white': active  }">Ng Class Example</div>
