@@ -1,35 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, OnInit, OnDestroy, AfterViewInit, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'https://fakeimg.pl/250x100/ff0000/';
+export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  bgColor = 'red';
 
-  columns = 2;
+  @ViewChild('myInput') input: ElementRef;
 
-  active = false;
+  name = 'ratnesh singh';
 
-  items = ['bmw', 'maruti', 'ferrari'];
+  mynumber = 7.9090909090;
+
+  date = new Date();
 
   constructor() {
-    console.log('constriuctor')
   }
 
-  toggleActive() {
-    this.active = !this.active;
+  // component object => constructor => ngOnInit => html render(view init) => ngAfterViewInit 
+
+  ngAfterViewInit() {
+    console.log('form after view init', this.input.nativeElement.value);
   }
 
+  ngOnDestroy(): void {
+    throw new Error("Method not implemented.");
+  }
 
-
-  ngOnInit() {
-    for (let item of this.items) {
-      console.log(item);
-    }
+  ngOnInit(): void {
+    // console.log('form oninit', this.input.value);
   }
 
 }
