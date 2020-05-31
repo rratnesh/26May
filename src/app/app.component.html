@@ -1,32 +1,4 @@
-<h1>{{title}}</h1>
-
-<div>
-  <h1 [style.backgroundColor]="'green'">hjdshdjshj</h1>
-
-  <img [attr.src]="title">
-
-  <table>
-    <tr>
-      <td>fsfdf</td>
-      <td>dsdsdf</td>
-    </tr>
-    <tr>
-      <td [attr.colspan]="columns">dsdsd</td>
-    </tr>
-  </table>
-</div>
-
-<h1 [ngStyle]="{ color: active ? 'red' : 'gray', backgroundColor: 'black'}">Attribute Directive</h1>
-<button (click)="toggleActive()">Active</button>
-
-<div *ngIf="active">I am Active</div>
-
-<div style="background-color: red;"*ngFor="let item of items">
-  <h1>{{item}}</h1>
-</div>
-
-
-<div [class.active]="active">Class Binding</div>
-
-
-<div [ngClass]="{ 'active': active, 'color-white': active  }">Ng Class Example</div>
+<p>{{longStr | mypipe:50:'......'}}</p>
+<button (click)="showName()">Show Name</button>
+<button (click)="changeCart()">Add To Cart</button>
+<app-headers></app-headers>

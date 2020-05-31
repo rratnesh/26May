@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NewService } from './services/new.service';
 
 @Component({
   selector: 'app-root',
@@ -6,30 +7,36 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'https://fakeimg.pl/250x100/ff0000/';
 
-  bgColor = 'red';
+  arr = ['abs', 'def'];
+  arr2 = [];
 
-  columns = 2;
 
-  active = false;
-
-  items = ['bmw', 'maruti', 'ferrari'];
-
-  constructor() {
-    console.log('constriuctor')
+  obj = {
+    name: 'Ratnesh',
+    email:'ratnesh@gmail.com'
   }
 
-  toggleActive() {
-    this.active = !this.active;
+  longStr = 'We re npm, Inc., the company behind Node package manager, the npm Registry, and npm CLI. We offer those to the community for free, but our day job is building and selling useful tools for developers like you.'
+
+  constructor(private newService: NewService){
   }
 
+  ngOnInit(){
+    // let [ arr1, arr2 ] = this.arr;
+    // console.log(arr1, arr2);
 
+    // let { name } = this.obj;
+    // console.log(name);
 
-  ngOnInit() {
-    for (let item of this.items) {
-      console.log(item);
-    }
+    console.log(this.newService.name);
   }
 
+  showName(){
+    console.log(this.newService.name);
+  }
+
+  changeCart(){
+    this.newService.cart += 1;
+  }
 }
