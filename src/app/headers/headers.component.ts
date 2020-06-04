@@ -4,7 +4,8 @@ import { NewService } from '../services/new.service';
 @Component({
   selector: 'app-headers',
   templateUrl: './headers.component.html',
-  styleUrls: ['./headers.component.css']
+  styleUrls: ['./headers.component.css'],
+  // providers: [NewService]
 })
 export class HeadersComponent implements OnInit {
 

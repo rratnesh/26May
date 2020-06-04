@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeadersComponent } from './headers/headers.component';
 import { MypipePipe } from './pipes/mypipe.pipe';
-import { NewService } from './services/new.service';
+import { SharedModule } from './shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,9 +16,11 @@ import { NewService } from './services/new.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule,
+    HttpClientModule
   ],
-  providers: [NewService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

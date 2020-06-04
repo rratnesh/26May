@@ -4,7 +4,8 @@ import { NewService } from './services/new.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  // providers: [NewService]
 })
 export class AppComponent {
 
@@ -30,9 +31,14 @@ export class AppComponent {
     // console.log(name);
 
     console.log(this.newService.name);
+    this.newService.getData().subscribe((res)=>{
+      console.log(res);
+    });
+    console.log('after getData');
   }
 
   showName(){
+
     console.log(this.newService.name);
   }
 
