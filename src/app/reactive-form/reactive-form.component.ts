@@ -30,6 +30,7 @@ export class ReactiveFormComponent implements OnInit {
   }
 
   submit() {
+    this.markFormGroupTouched(this.form);
     console.log(this.form.value);
   }
 
@@ -65,6 +66,15 @@ export class ReactiveFormComponent implements OnInit {
 
   removeCompany(index) {
     (this.form.get('companies') as FormArray).removeAt(index);
+  }
+
+  markFormGroupTouched(formGroup) {
+    (<any>Object).values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+      if (control.controls) {
+        this.markFormGroupTouched(control);
+      }
+    });
   }
 }
 
