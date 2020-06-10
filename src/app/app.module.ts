@@ -3,16 +3,36 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeadersComponent } from './headers/headers.component';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { CartComponent } from './cart/cart.component';
+import { AboutComponent } from './about/about.component';
+import { TeamComponent } from './about/team/team.component';
+import { ContactComponent } from './about/contact/contact.component';
+
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'cart', component: CartComponent },
+  {
+    path: 'about', component: AboutComponent,
+    children: [
+      { path: 'team', component: TeamComponent },
+      { path: 'contact', component: ContactComponent },
+    ]
+  },
+]
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeadersComponent
+    HomeComponent,
+    CartComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    // AppRoutingModule
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
