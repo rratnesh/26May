@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray, AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive-form',
@@ -19,14 +19,15 @@ export class ReactiveFormComponent implements OnInit {
     //   password: new FormControl('', [Validators.minLength(8), Validators.required])
     // });
     this.form = this.fb.group({
-      email: this.fb.control('', [Validators.required, Validators.email]),
-      password: this.fb.control('', [Validators.required, Validators.minLength(8)]),
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, this.minLength(8)]],
+      confirmPassword: ['', [Validators.required, this.minLength(8)]],
       address: this.fb.group({
-        city: this.fb.control('', [Validators.required]),
-        country: this.fb.control('', [Validators.required])
+        city: ['', [Validators.required]],
+        country: ['', [Validators.required]]
       }),
       companies: this.fb.array([])
-    })
+    }, { validators: [this.passwordMatch] })
   }
 
   submit() {
@@ -34,8 +35,13 @@ export class ReactiveFormComponent implements OnInit {
     console.log(this.form.value);
   }
 
+
   get password() {
     return this.form.get('password');
+  }
+
+  get confirmPassword() {
+    return this.form.get('confirmPassword');
   }
 
   get email() {
@@ -75,6 +81,35 @@ export class ReactiveFormComponent implements OnInit {
         this.markFormGroupTouched(control);
       }
     });
+  }
+
+  minLength(length) {
+    return function (control: AbstractControl): ValidationErrors {
+      if (control.value.length) {
+        if (control.value.length < length) {
+          return {
+            minimumlength: {
+              actualLength: control.value.length,
+              requiredLength: length
+            }
+          }
+        }
+        return null;
+      } else {
+        return null;
+      }
+    }
+  }
+
+  passwordMatch(control: AbstractControl): ValidationErrors {
+    let form = control as FormGroup;
+    if (form.get('confirmPassword').value && form.get('password').value) {
+        if (form.get('password').value !== form.get('confirmPassword').value) {
+          return {
+            misMatch: true
+          }
+      }
+    }
   }
 }
 
