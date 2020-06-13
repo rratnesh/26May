@@ -25,12 +25,8 @@
                 <label for="exampleInputPassword1">Confirm Password</label>
                 <input type="password" class="form-control" id="exampleInputPassword1" formControlName="confirmPassword"
                     autocomplete="false">
-                <div *ngIf="confirmPassword.errors && confirmPassword.touched" class="error">
-                    <div *ngIf="confirmPassword.errors.required">Confirm Password is required</div>
-                    <div *ngIf="form?.errors?.misMatch">Password did not match</div>
-                    <div *ngIf="confirmPassword.errors.minimumlength">Confirm Password length required is
-                        {{confirmPassword.errors.minimumlength.requiredLength}} But you entered
-                        {{confirmPassword.errors.minimumlength.actualLength}} characters.</div>
+                <div *ngIf="form.errors && confirmPassword.touched" class="error">
+                    <div *ngIf="form.errors.misMatch">Password did not match</div>
                 </div>
             </div>
             <p style="font-weight: 600;">Address</p>

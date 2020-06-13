@@ -21,7 +21,7 @@ export class ReactiveFormComponent implements OnInit {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, this.minLength(8)]],
-      confirmPassword: ['', [Validators.required, this.minLength(8)]],
+      confirmPassword: ['', []],
       address: this.fb.group({
         city: ['', [Validators.required]],
         country: ['', [Validators.required]]
@@ -102,14 +102,14 @@ export class ReactiveFormComponent implements OnInit {
   }
 
   passwordMatch(control: AbstractControl): ValidationErrors {
-    let form = control as FormGroup;
-    if (form.get('confirmPassword').value && form.get('password').value) {
-        if (form.get('password').value !== form.get('confirmPassword').value) {
-          return {
-            misMatch: true
-          }
+    let pass = control.get('password');
+    let cpass = control.get('confirmPassword');
+    if (cpass.value != pass.value) {
+      return {
+        misMatch: true
       }
     }
+    return null;
   }
 }
 
