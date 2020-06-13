@@ -1,1 +1,4 @@
 <p>team works!</p>
+<ul>
+    <li *ngFor="let teamMember of team" [routerLink]="['../detail', teamMember.id]">{{teamMember.name}}</li>
+</ul>
