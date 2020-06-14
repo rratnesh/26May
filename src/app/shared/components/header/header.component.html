@@ -1,5 +1,8 @@
 <ul>
-    <li><a href="javascript:void(0)" [routerLink]="['/']">Home</a></li>
-    <li><a href="javascript:void(0)" [routerLink]="['/cart']">Cart</a></li>
-    <li><a href="javascript:void(0)" [routerLink]="['/about']">About</a></li>
+    <li><a href="javascript:void(0)" [routerLink]="['/']" [routerLinkActive]="'active'"
+            [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+    <li><a href="javascript:void(0)" [routerLink]="['/cart']" [routerLinkActive]="'active'">Cart</a></li>
+    <li><a href="javascript:void(0)" [routerLink]="['/about']"  [routerLinkActive]="'active'">About</a></li>
+    <li><a href="javascript:void(0)" [routerLink]="['/auth/login']" [routerLinkActive]="'active'">Login</a></li>
+    <li><a href="javascript:void(0)" [routerLink]="['/auth/register']" [routerLinkActive]="'active'">Register</a></li>
 </ul>
